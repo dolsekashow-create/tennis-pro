@@ -787,6 +787,72 @@ body {
   text-decoration: none;
 }
 
+/* ===== ZERO-NINE CREDIT ===== */
+.zn-credit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 20px 30px;
+  gap: 14px;
+  background: linear-gradient(180deg, transparent 0%, rgba(212, 175, 55, 0.03) 100%);
+}
+.zn-credit-label {
+  color: var(--text-muted);
+  font-family: 'Tajawal', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+.zn-credit-link {
+  display: block;
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4), 0 0 0 0 rgba(212, 175, 55, 0);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+  background: #000;
+}
+.zn-credit-link:hover {
+  transform: translateY(-4px);
+  border-color: rgba(212, 175, 55, 0.6);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 30px rgba(212, 175, 55, 0.2);
+}
+.zn-credit-link video {
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+.zn-credit-link::after {
+  content: "زُر zero--nine.online ↗";
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px);
+  color: var(--accent);
+  font-family: 'Tajawal', sans-serif;
+  font-size: 0.8rem;
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.zn-credit-link:hover::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (max-width: 600px) {
+  .zn-credit-link { max-width: 100%; }
+}
+
 /* ===== ANIMATIONS ===== */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(30px); }
@@ -973,6 +1039,17 @@ body {
     <p>مشروع تخرج مقدم من طلاب كلية التربية الرياضية - جامعة المنوفية (شبين الكوم). المشروع بيهدف إنه يكون مرجع شامل لأي لاعب تنس سواء مبتدئ أو محترف، يساعده يتعلم الأساسيات الصحيحة ويعرف يتعامل مع الإصابات بشكل سليم.</p>
     <p>الموقع بيوفر معلومات طبية ورياضية موثوقة عن إصابات التنس الشائعة، وبيشرح تقنيات اللعب الأساسية بطريقة مبسطة، بالإضافة لإمكانية التواصل مع المدرب والحصول على نصائح فورية.</p>
   </div>
+</section>
+
+<!-- ZERO-NINE CREDIT -->
+<section class="zn-credit reveal">
+  <p class="zn-credit-label">تم الإنشاء والتطوير بواسطة</p>
+  <a href="https://www.zero--nine.online/" target="_blank" rel="noopener noreferrer" class="zn-credit-link" aria-label="Zero-Nine - زُر موقعنا">
+    <video autoplay muted loop playsinline preload="auto">
+      <source src="assets/zero-nine-intro.mp4" type="video/mp4">
+      متصفحك لا يدعم تشغيل الفيديو.
+    </video>
+  </a>
 </section>
 
 <!-- FOOTER -->
