@@ -809,13 +809,14 @@ body {
   position: relative;
   width: 100%;
   max-width: 420px;
+  aspect-ratio: 16 / 9;
   border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
   border: 1px solid rgba(212, 175, 55, 0.25);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.4), 0 0 0 0 rgba(212, 175, 55, 0);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
   transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
-  background: #000;
+  background: linear-gradient(135deg, #1a1410 0%, #0d0a08 100%);
 }
 .zn-credit-link:hover {
   transform: translateY(-4px);
@@ -825,15 +826,44 @@ body {
 .zn-credit-link video {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   pointer-events: none;
 }
-.zn-credit-link::after {
-  content: "زُر zero--nine.online ↗";
+/* Fallback branding if video fails */
+.zn-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  z-index: 1;
+}
+.zn-fallback-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--accent);
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+}
+.zn-fallback-tag {
+  color: var(--text-muted);
+  font-family: 'Tajawal', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+}
+.zn-credit-link video {
+  position: relative;
+  z-index: 2;
+}
+.zn-credit-cta {
   position: absolute;
   bottom: 12px;
   right: 12px;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.75);
   backdrop-filter: blur(8px);
   color: var(--accent);
   font-family: 'Tajawal', sans-serif;
@@ -844,10 +874,15 @@ body {
   opacity: 0;
   transform: translateY(8px);
   transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 3;
+  pointer-events: none;
 }
-.zn-credit-link:hover::after {
+.zn-credit-link:hover .zn-credit-cta {
   opacity: 1;
   transform: translateY(0);
+}
+@media (hover: none) {
+  .zn-credit-cta { opacity: 1; transform: translateY(0); }
 }
 @media (max-width: 600px) {
   .zn-credit-link { max-width: 100%; }
@@ -1045,10 +1080,14 @@ body {
 <section class="zn-credit reveal">
   <p class="zn-credit-label">تم الإنشاء والتطوير بواسطة</p>
   <a href="https://www.zero--nine.online/" target="_blank" rel="noopener noreferrer" class="zn-credit-link" aria-label="Zero-Nine - زُر موقعنا">
+    <div class="zn-fallback">
+      <div class="zn-fallback-logo">ZERO-NINE</div>
+      <div class="zn-fallback-tag">WEB DESIGN STUDIO</div>
+    </div>
     <video autoplay muted loop playsinline preload="auto">
       <source src="assets/zero-nine-intro.mp4" type="video/mp4">
-      متصفحك لا يدعم تشغيل الفيديو.
     </video>
+    <span class="zn-credit-cta">زُر zero--nine.online ↗</span>
   </a>
 </section>
 
